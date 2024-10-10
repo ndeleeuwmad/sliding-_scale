@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Custom Slider</title>
+    <title>Custom Option Slider</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -19,6 +19,12 @@
         .slider-container {
             width: 80%;
             max-width: 400px;
+        }
+
+        .slider-label {
+            margin-bottom: 10px;
+            font-size: 1.2em;
+            color: #333;
         }
 
         #custom-slider {
@@ -48,18 +54,33 @@
 </head>
 <body>
     <div class="slider-container">
-        <input type="range" min="0" max="100" value="50" id="custom-slider">
-        <div id="slider-value">Value: 50</div>
+        <div class="slider-label" id="slider-label">
+            What option makes the same amount of sense as the document I sent you?
+        </div>
+        <input type="range" min="0" max="8" value="0" id="custom-slider">
+        <div id="slider-value">The Electoral College</div>
     </div>
 
     <script>
         const slider = document.getElementById('custom-slider');
         const sliderValue = document.getElementById('slider-value');
 
+        const options = [
+            "The Electoral College",
+            "Gravity",
+            "Love",
+            "Hytrol",
+            "Hunger",
+            "Lemons",
+            "Drinking",
+            "Alec Baldwin",
+            "Money"
+        ];
+
         slider.addEventListener('input', (event) => {
             const value = event.target.value;
-            slider.style.setProperty('--slider-percentage', `${value}%`);
-            sliderValue.textContent = `Value: ${value}`;
+            slider.style.setProperty('--slider-percentage', `${(value / 8) * 100}%`);
+            sliderValue.textContent = options[value];
         });
     </script>
 </body>
